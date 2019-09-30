@@ -15,7 +15,8 @@
         }
     2.  chmod +x readvideo.sh  
         chmod +x Monitor.sh  
-        ./readvideo.sh  
+        chmod +x admin.sh
+	./admin.sh
         ./Monitor.sh  
 
 ## rtsp.json
@@ -66,7 +67,16 @@
     filesizenew=$(ls -l "$Dirnew/" | awk '{ print $5 }')
     ls -l 获取文件夹下所有的文件的详细信息，其中包含各个文件的详细大小信息
 
-
+## adimn.sh
+    for (( i=0; i<$ProcessNum; i++ ))
+    do
+    {
+        ./readvideo.sh $i
+        
+    }&
+    done 
+    wait
+    根据设置进程数量，开启相应个数的进程
 
 备注：保存视频和保存关键针图片建议不要同时进行，定时将保存的视频和图片存档
 
