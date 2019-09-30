@@ -71,9 +71,9 @@
     for (( i=0; i<$ProcessNum; i++ ))
     do
     {
-        ./readvideo.sh $i
+       ./readvideo.sh $i
     }&
-    done 
+    done
     wait
     根据设置进程数量，开启相应个数的进程
 
