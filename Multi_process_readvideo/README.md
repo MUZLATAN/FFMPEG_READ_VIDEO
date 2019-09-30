@@ -25,18 +25,18 @@
 ## readvideo.sh
 ### 读取视频流的文件  
     #define the file path 
-    Dir=$(date '+%y%m%d%H') 
+    D=$(date '+%y%m%d%H') 
     ms=$(date '+%M%S') 
     定义文件保存路径 
 	
     #use md5 map the rtsp to a unique string
     rtspmd5=$(echo $prot | md5sum |cut -d" " -f1)
-    #Dir="../$Dir/$rtspmd5/$ms"
-    Dir="$Dir/$rtspmd5/$ms
+    #D="../$Dir/$rtspmd5/$ms"
+    Dir="$D/$rtspmd5/$D$ms
 - 文件的保存目录在这里定义，如上，如果要将保存目录定应到当前目录之外，只需按照注释灵活更改即可
 #
 
-	Dir="../$Dir/$rtspmd5/$ms" #在父目录设置保存文件目录 灵活更改即可
+	Dir="../$D/$rtspmd5/$D$ms" #在父目录设置保存文件目录 灵活更改即可
 	
 ### 保存视频  
 	ffmpeg -stimeout 5000000 -i $prot  -vf select='eq(pict_type\,I)'  -vframes 120  "$Dir/video.mp4"
@@ -52,14 +52,14 @@
 	#对$port的视频流保存120帧的关键帧到图片img_00001.jpg（img_00002.jpg  img_00003.jpg ....） ，设置链接时间为5秒,超时即结束
 - not(mod(n\,2)) 是一个滤镜选项，可以和eq(pict_type\, I) 结合使用，表示每隔两帧保存一帧
 - -vsync 0 表示保存图片过程中不会存在粘滞帧
-- "$Dir/img_%5d.jpg" 和保存视频不同的是，当批量保存图片的时候，命名方式需要有所改变img_%5d 则是img_00001.jpg  img_00002.jpg.....
+- "$D/img_%5d.jpg" 和保存视频不同的是，当批量保存图片的时候，命名方式需要有所改变img_%5d 则是img_00001.jpg  img_00002.jpg.....
 	
 ###另外还可以使用
 
 - -t 10 表示从当前时间到之后10秒的视频流里面保存视频或关键帧 用以替换掉 -vframes 120
 	例如:
 #
-	ffmpeg -stimeout 5000000 -i $prot  -vf select='eq(pict_type\,I)*not(mod(n\,2))' -vsync 0 -t 10 "$Dir/img_%5d.jpg"
+	ffmpeg -stimeout 5000000 -i $prot  -vf select='eq(pict_type\,I)*not(mod(n\,2))' -vsync 0 -t 10 "$D/img_%5d.jpg"
 	可以将对应的参数了解之后灵活运用
 
 
@@ -75,7 +75,7 @@
     }&
     done
     wait
-    根据设置进程数量，开启相应个数的进程
+    根据设置进程数量，后台，无阻塞地开启相应个数的进程
 
 备注：保存视频和保存关键针图片建议不要同时进行，定时将保存的视频和图片存档
 
