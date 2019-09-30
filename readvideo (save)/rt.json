@@ -1,0 +1,7 @@
+{
+	"rtsp1":
+		{
+			"prot": "rtsp://admin:data2010@192.168.3.201:554/h264/ch33/main/av_stream",
+			"flag": "0"
+		}
+}
