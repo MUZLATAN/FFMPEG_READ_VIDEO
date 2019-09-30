@@ -72,7 +72,6 @@
     do
     {
         ./readvideo.sh $i
-        
     }&
     done 
     wait
