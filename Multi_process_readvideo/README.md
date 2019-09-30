@@ -68,9 +68,9 @@
     ls -l 获取文件夹下所有的文件的详细信息，其中包含各个文件的详细大小信息
 
 ## adimn.sh
->   for (( i=0; i<$ProcessNum; i++ ))
+    for (( i=0; i<$ProcessNum; i++ ))
     do
-    {
+    {
         ./readvideo.sh $i
     }&
     done 
